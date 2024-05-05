@@ -1,0 +1,33 @@
+services:
+  books-database:
+    image: 'postgres'
+    container_name: 'books-database'
+    restart: always
+    shm_size: 128mb
+    volumes:
+      - books-database:/var/lib/postgresql
+    environment:
+      - 'POSTGRES_DB=books'
+      - 'POSTGRES_PASSWORD=postgres'
+    ports:
+      - 5432:5432
+    networks:
+      - books-backend-network
+
+  books-backend:
+    image: books-backend
+    container_name: books-backend
+    build: .
+    ports:
+      - "8000:8000"
+    stdin_open: true
+    tty: true
+    networks:
+      - books-backend-network
+
+networks:
+  books-backend-network:
+    driver: bridge
+
+volumes:
+  books-database:

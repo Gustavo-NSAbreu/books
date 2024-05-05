@@ -1,0 +1,13 @@
+{
+  "name": "books",
+  "version": "1.0.0",
+  "description": "API to manage books",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.11.5"
+  }
+}
